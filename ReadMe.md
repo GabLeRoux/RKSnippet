@@ -2,6 +2,10 @@
 
 This project uses [Restkit](https://github.com/RestKit/RestKit) on top of a [django-rest-framework](http://www.django-rest-framework.org/)'s [demo api hosted on heroku](https://restframework.herokuapp.com/).
 
+## Current status
+
+![Example](/Documentation/example.png)
+
 ## Todo
 
 * Fetch all snippets (1st page)
