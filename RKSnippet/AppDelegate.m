@@ -1,10 +1,6 @@
-//
-//  AppDelegate.m
-//  RKSnippet
-//
-//  Created by Gabriel Le Breton on 2017-04-26.
-//  Copyright © 2017 gableroux. All rights reserved.
-//
+#import <RestKit/RestKit.h>
+#import "RKSnippetViewController.h"
+#import "RKSnippet.h"
 
 #import "AppDelegate.h"
 
@@ -14,9 +10,43 @@
 
 @implementation AppDelegate
 
+#pragma mark -
+#pragma mark Application lifecycle
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    RKLogConfigureByName("RestKit/Network*", RKLogLevelTrace);
+    RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
+
+    //let AFNetworking manage the activity indicator
+    [AFRKNetworkActivityIndicatorManager sharedManager].enabled = YES;
+
+    // Initialize HTTPClient
+    NSURL *baseURL = [NSURL URLWithString:@"https://restframework.herokuapp.com"];
+    AFRKHTTPClient* client = [[AFRKHTTPClient alloc] initWithBaseURL:baseURL];
+
+    //we want to work with JSON-Data
+    [client setDefaultHeader:@"Accept" value:RKMIMETypeJSON];
+
+    // Initialize RestKit
+    RKObjectManager *objectManager = [[RKObjectManager alloc] initWithHTTPClient:client];
+
+    RKObjectMapping *snippetMapping = [RKObjectMapping mappingForClass:[RKSnippet class]];
+    [snippetMapping addAttributeMappingsFromDictionary:@{
+                                                         @"url" : @"url",
+                                                         @"highlight" : @"highlight",
+                                                         @"owner" : @"owner",
+                                                         @"title" : @"title",
+                                                         @"code" : @"code",
+                                                         @"linenos" : @"linenos",
+                                                         @"language" : @"language",
+                                                         @"style" : @"style",
+                                                         }];
+
+    // Register our mappings with the provider using a response descriptor
+    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:snippetMapping method:RKRequestMethodGET pathPattern:@"/snippets/:id/" keyPath:nil statusCodes:[NSIndexSet indexSetWithIndex:200]];
+    [objectManager addResponseDescriptor:responseDescriptor];
+
     return YES;
 }
 

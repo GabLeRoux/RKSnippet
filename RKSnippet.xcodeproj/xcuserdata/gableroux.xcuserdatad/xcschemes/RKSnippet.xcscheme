@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D106505E1EB1372A007046ED"
+               BlueprintIdentifier = "D13DFD531EB1162000C38630"
                BuildableName = "RKSnippet.app"
                BlueprintName = "RKSnippet"
                ReferencedContainer = "container:RKSnippet.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D10650771EB1372A007046ED"
+               BlueprintIdentifier = "D13DFD6C1EB1162100C38630"
                BuildableName = "RKSnippetTests.xctest"
                BlueprintName = "RKSnippetTests"
                ReferencedContainer = "container:RKSnippet.xcodeproj">
@@ -42,7 +42,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D10650821EB1372B007046ED"
+               BlueprintIdentifier = "D13DFD771EB1162100C38630"
                BuildableName = "RKSnippetUITests.xctest"
                BlueprintName = "RKSnippetUITests"
                ReferencedContainer = "container:RKSnippet.xcodeproj">
@@ -52,7 +52,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D106505E1EB1372A007046ED"
+            BlueprintIdentifier = "D13DFD531EB1162000C38630"
             BuildableName = "RKSnippet.app"
             BlueprintName = "RKSnippet"
             ReferencedContainer = "container:RKSnippet.xcodeproj">
@@ -75,7 +75,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D106505E1EB1372A007046ED"
+            BlueprintIdentifier = "D13DFD531EB1162000C38630"
             BuildableName = "RKSnippet.app"
             BlueprintName = "RKSnippet"
             ReferencedContainer = "container:RKSnippet.xcodeproj">
@@ -94,7 +94,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D106505E1EB1372A007046ED"
+            BlueprintIdentifier = "D13DFD531EB1162000C38630"
             BuildableName = "RKSnippet.app"
             BlueprintName = "RKSnippet"
             ReferencedContainer = "container:RKSnippet.xcodeproj">
