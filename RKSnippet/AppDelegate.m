@@ -17,36 +17,54 @@
 {
     RKLogConfigureByName("RestKit/Network*", RKLogLevelTrace);
     RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
-
+    
     //let AFNetworking manage the activity indicator
     [AFRKNetworkActivityIndicatorManager sharedManager].enabled = YES;
-
+    
     // Initialize HTTPClient
     NSURL *baseURL = [NSURL URLWithString:@"https://restframework.herokuapp.com"];
     AFRKHTTPClient* client = [[AFRKHTTPClient alloc] initWithBaseURL:baseURL];
-
+    
     //we want to work with JSON-Data
     [client setDefaultHeader:@"Accept" value:RKMIMETypeJSON];
-
+    
     // Initialize RestKit
     RKObjectManager *objectManager = [[RKObjectManager alloc] initWithHTTPClient:client];
-
+    
     RKObjectMapping *snippetMapping = [RKObjectMapping mappingForClass:[RKSnippet class]];
-    [snippetMapping addAttributeMappingsFromDictionary:@{
-                                                         @"url" : @"url",
-                                                         @"highlight" : @"highlight",
-                                                         @"owner" : @"owner",
-                                                         @"title" : @"title",
-                                                         @"code" : @"code",
-                                                         @"linenos" : @"linenos",
-                                                         @"language" : @"language",
-                                                         @"style" : @"style",
-                                                         }];
-
+    [snippetMapping addAttributeMappingsFromArray:
+     @[
+       @"url",
+       @"highlight",
+       @"owner",
+       @"title",
+       @"code",
+       @"linenos",
+       @"language",
+       @"style",
+       ]];
+    
     // Register our mappings with the provider using a response descriptor
-    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:snippetMapping method:RKRequestMethodGET pathPattern:@"/snippets/:id/" keyPath:nil statusCodes:[NSIndexSet indexSetWithIndex:200]];
-    [objectManager addResponseDescriptor:responseDescriptor];
+    RKResponseDescriptor *listResponseDescriptor = [RKResponseDescriptor
+                                                responseDescriptorWithMapping:snippetMapping
+                                                method:RKRequestMethodGET
+                                                pathPattern:@"/snippets/"
+                                                keyPath:@"results"
+                                                statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)
+                                                ];
 
+    [objectManager addResponseDescriptor:listResponseDescriptor];
+    
+    RKResponseDescriptor *itemResponseDescriptor = [RKResponseDescriptor
+                                                    responseDescriptorWithMapping:snippetMapping
+                                                    method:RKRequestMethodAny
+                                                    pathPattern:@"/snippets/:id"
+                                                    keyPath:nil
+                                                    statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)
+                                                    ];
+    
+    [objectManager addResponseDescriptor:itemResponseDescriptor];
+    
     return YES;
 }
 
