@@ -2,6 +2,12 @@
 
 This project uses [Restkit](https://github.com/RestKit/RestKit) on top of a [django-rest-framework](http://www.django-rest-framework.org/)'s [demo api hosted on heroku](https://restframework.herokuapp.com/).
 
+## Most interesting files
+
+* [RKSnippet/AppDelegate.m](RKSnippet/AppDelegate.m) registers Restkit
+* [RKSnippet/RKSnippetViewController.m](RKSnippet/RKSnippetViewController.m) does the API calls and maps to model
+* [RKSnippet/RKSnippet.m](RKSnippet/RKSnippet.m) the model used
+
 ## Current status
 
 ![Example](/Documentation/example.png)
