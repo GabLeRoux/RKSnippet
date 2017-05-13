@@ -17,6 +17,7 @@ This project uses [Restkit](https://github.com/RestKit/RestKit) on top of a [dja
 - [x] Fetch all snippets (1st page)
 - [ ] Add pagination support
 - [ ] Add a view to visit a single snippet
+- [ ] Support authentication
 
 ## Contributing
 
